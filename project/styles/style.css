@@ -1,0 +1,8 @@
+#infographic_1 {
+    display: flex;
+    flex-direction: row;
+}
+
+h2 {
+    text-align: center;
+}
