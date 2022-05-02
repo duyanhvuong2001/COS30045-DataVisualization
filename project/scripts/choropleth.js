@@ -15,34 +15,20 @@ function init() {
                 .attr("height",h)
                 .attr("fill","teal");
     //color scheme
+    // var color = d3.scaleQuantize()
+    //                 .range(["#f2f0f7",
+    //                         "#9e9ac8",
+    //                         "#54278f"]);
+
     var color = d3.scaleQuantize()
-                    .range(["#f2f0f7",
-                            "#9e9ac8",
-                            "#54278f"]);
+                    .range(['#543005','#8c510a','#bf812d','#dfc27d','#f6e8c3','#c7eae5','#80cdc1','#35978f','#01665e','#003c30']);
 
-    // d3.json("json/auGeoJson.json",function(json){//load in geo-json data 
-
-    //     svg.selectAll("path") 
-    //         .data(json.features)//create one path element for each features
-    //         .enter()
-    //         .append("path")
-    //         .attr("d",path)
-           
-
-    //         .style("stroke","black")//stroke color
-    //         .style("stroke-width",0.8)
-    //         .style("opacity", 0.8)//opacity
-    //         .on("mouseover", mouseOver)//mouse over trigger
-    //         .on("mouseleave", mouseLeave)//mouse out trigger
-    //         ;
-    // });
-
-    d3.csv("data/auConsumptionPerState19-20.csv", function(data){
+    d3.csv("data/auElectricityGeneration2021.csv", function(data){
         //map the color range based on loaded data
         color.domain(
             [
-                d3.min(data,function(d){return d.PJ;}),
-                d3.max(data,function(d){return d.PJ;})
+                d3.min(data,function(d){return d.percent_renewable_generation;}),
+                d3.max(data,function(d){return d.percent_renewable_generation;})
             ]
         );
         
@@ -52,10 +38,10 @@ function init() {
             
             for(var i=0; i < data.length; i++){
                 //town name
-                var dataState = data[i].State;
+                var dataState = data[i].state;
                 
                 //data value, convert from string to float
-                var dataVal = parseFloat(data[i].PJ);
+                var dataVal = parseFloat(data[i].percent_renewable_generation);
                 
                 //find corresponding town inside GeoJSON
                 for (var j = 0; j < json.features.length; j++){
@@ -102,14 +88,17 @@ function init() {
         });
     });
 
-    //---------------------------FUNCTIONS------------------------
+    //---------------------------INTERACTIVITY FUNCTIONS------------------------
 
     //mouseOver function
     var mouseOver = function(d) {
         d3.selectAll(".state")
             .transition()
             .duration(200)
-            .style("opacity", .5);//fade other states
+            .style("opacity", .5)//fade other states
+            .style("stroke","black")//stroke color
+            ;
+            
 
         d3.select(this) //highlight this state
             .transition()
