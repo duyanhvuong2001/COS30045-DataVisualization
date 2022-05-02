@@ -33,6 +33,9 @@ function init() {
             ;
     });
 
+
+    //---------------------------FUNCTIONS------------------------
+
     //mouseOver function
     var mouseOver = function(d) {
         d3.selectAll(".state")
