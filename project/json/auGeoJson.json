@@ -5,7 +5,7 @@
         "type": "Feature",
         "id": 0,
         "properties": {
-          "STATE_CODE": "1",
+          "STATE_CODE": "NSW",
           "STATE_NAME": "New South Wales"
         },
         "geometry": {
@@ -19,7 +19,7 @@
         "type": "Feature",
         "id": 1,
         "properties": {
-          "STATE_CODE": "2",
+          "STATE_CODE": "VIC",
           "STATE_NAME": "Victoria"
         },
         "geometry": {
@@ -33,7 +33,7 @@
         "type": "Feature",
         "id": 2,
         "properties": {
-          "STATE_CODE": "3",
+          "STATE_CODE": "QLD",
           "STATE_NAME": "Queensland"
         },
         "geometry": {
@@ -47,7 +47,7 @@
         "type": "Feature",
         "id": 3,
         "properties": {
-          "STATE_CODE": "4",
+          "STATE_CODE": "SA",
           "STATE_NAME": "South Australia"
         },
         "geometry": {
@@ -61,7 +61,7 @@
         "type": "Feature",
         "id": 4,
         "properties": {
-          "STATE_CODE": "5",
+          "STATE_CODE": "WA",
           "STATE_NAME": "Western Australia"
         },
         "geometry": {
@@ -75,7 +75,7 @@
         "type": "Feature",
         "id": 5,
         "properties": {
-          "STATE_CODE": "6",
+          "STATE_CODE": "TAS",
           "STATE_NAME": "Tasmania"
         },
         "geometry": {
@@ -89,7 +89,7 @@
         "type": "Feature",
         "id": 6,
         "properties": {
-          "STATE_CODE": "7",
+          "STATE_CODE": "NT",
           "STATE_NAME": "Northern Territory"
         },
         "geometry": {
@@ -103,7 +103,7 @@
         "type": "Feature",
         "id": 7,
         "properties": {
-          "STATE_CODE": "8",
+          "STATE_CODE": "ACT",
           "STATE_NAME": "Australian Capital Territory"
         },
         "geometry": {
