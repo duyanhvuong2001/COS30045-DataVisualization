@@ -119,10 +119,10 @@ function init() {
 
         d3.selectAll("#detailed_info > *").remove();//clear the svg
         
-        w = 600;
-        h = 600;
-        var horizontalPadding = 10;
-        var verticalPadding = 70;
+        // set the dimensions and margins of the graph
+        var margin = {top: 30, right: 50, bottom: 70, left: 50},
+        w = 500 - margin.left - margin.right,
+        h = 300 - margin.top - margin.bottom;
         var paddingInner = 0.05;
         var dataset = [
                         ["Black Coal", d.properties.black_coal],
@@ -133,8 +133,8 @@ function init() {
                         ["Biogas",  d.properties.biogas],
                         ["Wind", d.properties.wind],
                         [ "Hydro",  d.properties.hydro],
-                        [ "Large Scale Solar PV",  d.properties.large_scale_solar_PV],
-                        [ "Small Scale Solar PV", d.properties.small_scale_solar_PV]
+                        [ "Large Solar PV",  d.properties.large_scale_solar_PV],
+                        [ "Small Solar PV", d.properties.small_scale_solar_PV]
                         ];
         
         //Arrays of categories for color assignments
@@ -145,10 +145,10 @@ function init() {
         
         var svg1 = d3.select("#detailed_info")//create the svg
         .append("svg")
-        .attr("width",w)
-        .attr("height",h)
+        .attr("width",w + margin.left + margin.right)
+        .attr("height",h + margin.top + margin.bottom)
         .attr("transform",
-          "translate(" + horizontalPadding + "," + verticalPadding + ")");
+          "translate(" + margin.left + "," + margin.top + ")");
 
         ;
         
@@ -156,26 +156,19 @@ function init() {
                     .domain(dataset.map(function(d) { 
                         return d[0];
                     })) //domain will be the first column
-                    .range([0,w-horizontalPadding])
+                    .range([0,w])
                     .paddingInner(paddingInner)//specify the mapped range, round it to minimize decimal places
                     ; //add padding value
-        
-        console.log(xScale.domain());
-        console.log(xScale.bandwidth());
+    
 
         yScale = d3.scaleLinear()
                 .domain([
                     0,//min value = 0
                     d3.max(dataset, function(d) { return parseFloat(d[1])}),//maximum value
                 ])
-                .range([0,h-verticalPadding]);//range of the domain
-        
-        console.log(yScale.range());
+                .range([h,0]);//range of the domain
+    
         //color scales for different categories
-        var nonRenewableColorScale = d3.scaleOrdinal()
-                            .range(['#543005','#8c510a','#bf812d','#dfc27d','#f6e8c3']);
-        var renewableColorScale = d3.scaleOrdinal()
-                            .range(['#c7eae5','#80cdc1','#35978f','#01665e','#003c30']);
 
 
         
@@ -184,21 +177,21 @@ function init() {
             .enter()//data placeholder
             .append("rect")//draw the rectangle for each data
             .attr("x", function(d,i){
-                return xScale(d[0])
+                return xScale(d[0])+margin.left;
             })
             .attr("y", function(d){
-                return h-yScale(d[1])-verticalPadding; //reverse the axis
+                return yScale(d[1]); //reverse the axis
             })
             .attr("width",xScale.bandwidth())
             .attr("height",function(d){
-                return yScale(d[1]);
+                return h-yScale(d[1]);
             })
             .attr("fill",function(d,i){
                 if(non_renewable.includes(d[0])) {
-                    return nonRenewableColorScale(i);
+                    return '#bf812d'
                 }
                 else {
-                    return renewableColorScale(i);
+                    return '#35978f'
                 }
             })
             ;
@@ -208,11 +201,20 @@ function init() {
                         .scale(xScale);
 
         svg1.append("g")
-            .attr("transform", "translate("+horizontalPadding+", "+(h-verticalPadding)+")")//add some padding
+            .attr("transform", "translate("+margin.left+", "+h+")")//add some padding
             .call(xAxis)
             .selectAll("text")
-            .attr("transform", "translate(-10,0)rotate(-45)")
+            .attr("transform", "translate(-10,0)rotate(-60)")
+            .attr("font-size","smaller")
             .style("text-anchor", "end");
+
+        //add yAxis
+        var yAxis = d3.axisLeft()
+                    .scale(yScale);
+        
+        svg1.append("g")
+            .attr("transform", "translate("+margin.left+", 0)")//add some padding
+            .call(yAxis);
     }
 
     //mouseOut function
