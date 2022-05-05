@@ -2,6 +2,8 @@ function init() {
     var w = 700;
     var h = 710;
 
+    //--------VISUALIZATION 1: AUSTRALIAN CHOROPLETH-------
+
     var projection = d3.geoMercator() //projection of the map
                         .center([135, -26])
                         .translate([w/2,h/2])
