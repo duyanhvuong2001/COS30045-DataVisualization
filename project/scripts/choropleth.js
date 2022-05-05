@@ -127,18 +127,7 @@ function init() {
   var outerRadius = radius - 20;
   // color of visualization
   var color1 = d3
-    .scaleOrdinal(d3.schemeCategory20)
-    .range([
-      "#e41a1c",
-      "#377eb8",
-      "#4daf4a",
-      "#984ea3",
-      "#ff7f00",
-      "#ffff33",
-      "#a65628",
-      "#f781bf",
-      "#999999",
-    ]);
+    .scaleOrdinal(d3.schemeCategory10);
 
   // Duration of animations
   var duration = 2000;
@@ -154,39 +143,41 @@ function init() {
   // Circular arcs for donut pie chart
   var arc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
 
-  // Circular Arc increases in size when most hovers
-  var arcOver = d3.svg2
+  var label = d3
     .arc()
-    .outerRadius(radius + 20)
-    .innerRadius(radius - 180);
+    .innerRadius(innerRadius)
+    .outerRadius(outerRadius - 80);
 
   // setting up SVG for visualization
-  var svg = d3
+  var svg2 = d3
     .select("#pie_1")
     .append("svg")
     .attr("width", w)
     .attr("height", h)
     .append("g")
     .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
+  
 
-  d3.csv("data/totalPercentageGeneration2021.csv", function (data) {
+  d3.csv("data/totalPercentageGeneration2021.csv", function (error, data) {
+    // troubleshoot if error exist
+    if (error) {
+      throw error;
+    }
+
     // setting up arcs for visualization
-    var arcs = svg
+    var arcs = svg2
       .selectAll("g.arc")
       .data(pie(data))
       .enter()
       .append("g")
-      .attr("class", "arc")
+      .attr("class", "arc");
 
     // adding color to chords of pie chart
-    arcs
-      .append("path")
-      .attr("fill", function (d) {
-        return color1(d.data.type);
-      })
-      .attr("d", function (d, i) {
-        return arc(d, i);
-      });
+    arcs.append("path").attr("fill", function (d) {
+      return color1(d.data.type);
+    });
+
+    console.log(arc);
     // data written on graph
     arcs
       .append("text")
@@ -194,7 +185,7 @@ function init() {
         return d.value;
       })
       .attr("transform", function (d) {
-        return "translate(" + arc.centroid(d) + ")";
+        return "translate(" + label.centroid(d) + ")";
       });
   });
 
@@ -336,7 +327,7 @@ function init() {
       .attr("transform", "translate(" + margin.left + ", 0)") //add some padding
       .call(yAxis)
       .selectAll("text")
-      .attr("font-size", "15px").se;
+      .attr("font-size", "15px");
   };
 
   //mouseOut function
