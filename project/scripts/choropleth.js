@@ -108,21 +108,18 @@ function init() {
 
     //--------VISUALIZATION 2: INTERACTIVE PIE CHART------
     
+    
     // setting up and radius for visualization
     var radius = Math.min(width, height) / 2;
-    
-    // Variable that keeps track of boolean value
-    var initValue = true;
 
     // color of visualization
     var color1 = d3.scaleOrdinal(d3.schemeCategory20);
     
     // Duration of animations
-    var duration = 600;
+    var duration = 2000;
 
     // Pie chart variable
     var pie = d3.pie()
-    .value(function(d) { return d.count; })
     .sort(null);
 
     // Circular arcs for donut pie chart
@@ -130,12 +127,18 @@ function init() {
     .innerRadius(radius - 100)
     .outerRadius(radius - 20);
 
-    var svg2 = d3.select("infographic_2")
+    // Circular Arc increases in size when most hovers
+    var arcOver = d3.svg.arc().outerRadius(radius + 20).innerRadius(radius - 180);
+
+    var svg2 = d3.select("#infographic_2")
         .append("svg")
         .attr("width", w)
-        .attr("height", h)
-        .append("g")
-        .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
+        .attr("height", h);
+    
+    var arcs = svg
+    .selectAll("g.arc")
+    .data(pie())
+    
 
 
 
