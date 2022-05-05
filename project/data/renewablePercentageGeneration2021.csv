@@ -1,1 +1,7 @@
-﻿type
+﻿type,percentage
+wind,35.9
+small_scale_solar,24.9
+hydro,21.6
+large_scale_solar,12.3
+bioenergy,4.3
+medium_scale_solar,1.1
