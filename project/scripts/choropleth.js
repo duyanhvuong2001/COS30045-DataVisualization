@@ -1,11 +1,20 @@
+//==========================================================================
+//---------------------------VISUALIZATION SCRIPT---------------------------
+// Team members: Duy Anh Vuong (Jeff) & Minh Vu Nguyen (Brian)
+// Last editted: 5th May 2022
+// Purpose: Script to run visualizations in HTML
+//==========================================================================
+
 function init() {
     var w = 700;
-    var h = 500;
+    var h = 710;
+
+    //--------VISUALIZATION 1: AUSTRALIAN CHOROPLETH-------
 
     var projection = d3.geoMercator() //projection of the map
                         .center([135, -26])
                         .translate([w/2,h/2])
-                        .scale(600);//expand the map
+                        .scale(850);//expand the map
 
     var path = d3.geoPath().projection(projection);//map projection 
 
@@ -93,8 +102,47 @@ function init() {
             ;
         });
     });
+    // //_____________________________________________________
 
+    //--------VISUALIZATION 2: INTERACTIVE PIE CHART------
+    
+    // setting up and radius for visualization
+    var radius = Math.min(width, height) / 2;
+    
+    // Variable that keeps track of boolean value
+    var initValue = true;
+
+    // color of visualization
+    var color1 = d3.scaleOrdinal(d3.schemeCategory20);
+    
+    // Duration of animations
+    var duration = 600;
+
+    // Pie chart variable
+    var pie = d3.pie()
+    .value(function(d) { return d.count; })
+    .sort(null);
+
+    // Circular arcs for donut pie chart
+    var arc = d3.arc()
+    .innerRadius(radius - 100)
+    .outerRadius(radius - 20);
+
+    var svg2 = d3.select("infographic_2")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h)
+        .append("g")
+        .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
+
+
+
+
+
+
+    //==========================================================================
     //---------------------------INTERACTIVITY FUNCTIONS------------------------
+    //==========================================================================
 
     //mouseOver function
     var mouseOverMap = function(d) {
@@ -120,9 +168,9 @@ function init() {
         d3.selectAll("#detailed_info > *").remove();//clear the svg
         
         // set the dimensions and margins of the graph
-        var margin = {top: 30, right: 50, bottom: 70, left: 50},
-        w = 500 - margin.left - margin.right,
-        h = 300 - margin.top - margin.bottom;
+        var margin = {top: 50, right: 50, bottom: 70, left: 70},
+        w = 800 - margin.left - margin.right,
+        h = 600 - margin.top - margin.bottom;
         var paddingInner = 0.05;
         var dataset = [
                         ["Black Coal", d.properties.black_coal],
@@ -161,12 +209,13 @@ function init() {
                     ; //add padding value
     
 
-        yScale = d3.scaleLinear()
+        var yScale = d3.scaleLinear()
                 .domain([
                     0,//min value = 0
-                    d3.max(dataset, function(d) { return parseFloat(d[1])}),//maximum value
+                    d3.max(dataset, function(d) { return parseFloat(d[1])*1.1}),//maximum value
                 ])
-                .range([h,0]);//range of the domain
+                .range([h,0])
+                ;//range of the domain
     
         //color scales for different categories
 
@@ -195,6 +244,20 @@ function init() {
                 }
             })
             ;
+
+        svg1.selectAll("text")
+            .data(dataset)
+            .enter()
+            .append("text")
+            .attr("x", function(d,i){
+                return xScale(d[0])+margin.left;
+            })
+            .attr("y", function(d){
+                return yScale(d[1]); //reverse the axis
+            })
+            .text(function(d){
+                return d[1];
+            })
         
         //add xAxis
         var xAxis = d3.axisBottom()
@@ -205,16 +268,20 @@ function init() {
             .call(xAxis)
             .selectAll("text")
             .attr("transform", "translate(-10,0)rotate(-60)")
-            .attr("font-size","smaller")
+            .attr("font-size","15px")
             .style("text-anchor", "end");
 
         //add yAxis
         var yAxis = d3.axisLeft()
-                    .scale(yScale);
+                    .scale(yScale)
+                    .ticks(5);
         
         svg1.append("g")
             .attr("transform", "translate("+margin.left+", 0)")//add some padding
-            .call(yAxis);
+            .call(yAxis)
+            .selectAll("text")
+            .attr("font-size","15px")
+            .se;
     }
 
     //mouseOut function
