@@ -122,9 +122,10 @@ function init() {
   //--------VISUALIZATION 2: INTERACTIVE PIE CHART------
 
   // setting up and radius for visualization
-  var radius = Math.min(w, h) / 2;
-  var innerRadius = radius - 100;
-  var outerRadius = radius - 20;
+  w = 600;
+  h = 600;
+  var innerRadius = w/2;
+  var outerRadius = 0;
   // color of visualization
   var color1 = d3
     .scaleOrdinal(d3.schemeCategory10);
@@ -135,13 +136,16 @@ function init() {
   // Pie chart variable
   var pie = d3
     .pie()
-    .sort(null)
     .value(function (d) {
+      console.log(d.percentage);
       return d.percentage;
     });
 
   // Circular arcs for donut pie chart
-  var arc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+  var arc = d3
+            .arc()
+            .innerRadius(innerRadius)
+            .outerRadius(outerRadius);
 
   var label = d3
     .arc()
@@ -170,14 +174,19 @@ function init() {
       .data(pie(data))
       .enter()
       .append("g")
-      .attr("class", "arc");
+      .attr("class", "arc")
+      .attr("transform","translate("+outerRadius+","+outerRadius+")")//make a pie chart with 0 inner radius;
 
     // adding color to chords of pie chart
-    arcs.append("path").attr("fill", function (d) {
-      return color1(d.data.type);
-    });
+    arcs.append("path")
+        .attr("fill", function (d) {
+          return color1(d.data.types);
+        })
+        .attr("d",function (d,i) {
+          return arc(d,i);
+        });
 
-    console.log(arc);
+    console.log("ditme");
     // data written on graph
     arcs
       .append("text")
