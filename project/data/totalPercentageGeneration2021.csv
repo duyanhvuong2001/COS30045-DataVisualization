@@ -1,6 +1,6 @@
 ﻿types,percentage
+liquids,0.1
 coal,59.1
+non_metered_fossil_fuels,0.6
 renewables,32.5
 gas,7.7
-non_metered_fossil_fuels,0.6
-liquids,0.1

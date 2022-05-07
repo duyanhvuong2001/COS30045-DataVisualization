@@ -232,10 +232,10 @@ function init() {
       .enter()
       .append("text")
       .attr("x", function (d, i) {
-        return xScale(d[0]) + margin.left;
+        return xScale(d[0]) + margin.left + 10;
       })
       .attr("y", function (d) {
-        return yScale(d[1]); //reverse the axis
+        return yScale(d[1]) - 2; //reverse the axis
       })
       .text(function (d) {
         return d[1];
