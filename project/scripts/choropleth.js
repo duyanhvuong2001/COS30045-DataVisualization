@@ -41,6 +41,15 @@ function init() {
       "#003c30",
     ]);
 
+    //svg for interaction
+    var svg1 = d3
+      .select("#detailed_info") //create the svg
+      .append("svg")
+      .attr("width", w + margin.left + margin.right)
+      .attr("height", h + margin.top + margin.bottom)
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
   d3.csv("data/auElectricityGeneration2021.csv", function (data) {
     //map the color range based on loaded data
     color.domain([
@@ -221,7 +230,7 @@ function init() {
 
     //---A CHART--------------------------------
 
-    d3.selectAll("#detailed_info > *").remove(); //clear the svg
+    // d3.selectAll("#detailed_info > *").remove(); //clear the svg
 
     // set the dimensions and margins of the graph
     var margin = { top: 50, right: 50, bottom: 70, left: 70 },
@@ -251,13 +260,6 @@ function init() {
 
     document.getElementById("state_name").innerHTML = d.properties.STATE_NAME; //change title to state state_name
 
-    var svg1 = d3
-      .select("#detailed_info") //create the svg
-      .append("svg")
-      .attr("width", w + margin.left + margin.right)
-      .attr("height", h + margin.top + margin.bottom)
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
     var xScale = d3
       .scaleBand() //Ordinal scale
       .domain(
@@ -276,13 +278,14 @@ function init() {
         }), //maximum value
       ])
       .range([h, 0]); //range of the domain
-    //color scales for different categories
 
     svg1
       .selectAll("rect")
       .data(dataset) //dataset used
       .enter() //data placeholder
       .append("rect") //draw the rectangle for each data
+      .transition() //transition
+      .duration(2000)
       .attr("x", function (d, i) {
         return xScale(d[0]) + margin.left;
       })
@@ -300,6 +303,8 @@ function init() {
           return "#35978f";
         }
       });
+
+
 
     svg1
       .selectAll("text")
