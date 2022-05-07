@@ -41,13 +41,7 @@ function init() {
       "#003c30",
     ]);
 
-    //svg for interaction
-    var svg1 = d3
-      .select("#detailed_info") //create the svg
-      .append("svg")
-      .attr("width", w + margin.left + margin.right)
-      .attr("height", h + margin.top + margin.bottom)
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
 
 
   d3.csv("data/auElectricityGeneration2021.csv", function (data) {
@@ -126,87 +120,6 @@ function init() {
     });
   });
 
-  //_____________________________________________________
-
-  //--------VISUALIZATION 2: INTERACTIVE PIE CHART------
-
-  // setting up and radius for visualization
-  w = 600;
-  h = 600;
-  var innerRadius = w/2;
-  var outerRadius = 0;
-  // color of visualization
-  var color1 = d3
-    .scaleOrdinal(d3.schemeCategory10);
-
-  // Duration of animations
-  var duration = 2000;
-
-  // Pie chart variable
-  var pie = d3
-    .pie()
-    .value(function (d) {
-      console.log(d.percentage);
-      return d.percentage;
-    });
-
-  // Circular arcs for donut pie chart
-  var arc = d3
-            .arc()
-            .innerRadius(innerRadius)
-            .outerRadius(outerRadius);
-
-  var label = d3
-    .arc()
-    .innerRadius(innerRadius)
-    .outerRadius(outerRadius - 80);
-
-  // setting up SVG for visualization
-  var svg2 = d3
-    .select("#pie_1")
-    .append("svg")
-    .attr("width", w)
-    .attr("height", h)
-    .append("g")
-    .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
-  
-
-  d3.csv("data/totalPercentageGeneration2021.csv", function (error, data) {
-    // troubleshoot if error exist
-    if (error) {
-      throw error;
-    }
-
-    // setting up arcs for visualization
-    var arcs = svg2
-      .selectAll("g.arc")
-      .data(pie(data))
-      .enter()
-      .append("g")
-      .attr("class", "arc")
-      .attr("transform","translate("+outerRadius+","+outerRadius+")")//make a pie chart with 0 inner radius;
-
-    // adding color to chords of pie chart
-    arcs.append("path")
-        .attr("fill", function (d) {
-          return color1(d.data.types);
-        })
-        .attr("d",function (d,i) {
-          return arc(d,i);
-        });
-
-    console.log("ditme");
-    // data written on graph
-    arcs
-      .append("text")
-      .text(function (d) {
-        return d.value;
-      })
-      .attr("transform", function (d) {
-        return "translate(" + label.centroid(d) + ")";
-      });
-  });
-
   //==========================================================================
   //---------------------------INTERACTIVITY FUNCTIONS------------------------
   //==========================================================================
@@ -230,13 +143,21 @@ function init() {
 
     //---A CHART--------------------------------
 
-    // d3.selectAll("#detailed_info > *").remove(); //clear the svg
+    d3.selectAll("#detailed_info > *").remove(); //clear the svg
 
-    // set the dimensions and margins of the graph
-    var margin = { top: 50, right: 50, bottom: 70, left: 70 },
-      w = 800 - margin.left - margin.right,
-      h = 600 - margin.top - margin.bottom;
-    var paddingInner = 0.05;
+     // set the dimensions and margins of the graph
+     var margin = { top: 50, right: 50, bottom: 70, left: 70 },
+     w = 800 - margin.left - margin.right,
+     h = 600 - margin.top - margin.bottom;
+   var paddingInner = 0.05;
+   //svg for interaction
+   var svg1 = d3
+     .select("#detailed_info") //create the svg
+     .append("svg")
+     .attr("width", w + margin.left + margin.right)
+     .attr("height", h + margin.top + margin.bottom)
+     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+   
     var dataset = [
       ["Black Coal", d.properties.black_coal],
       ["Brown Coal", d.properties.brown_coal],
@@ -269,6 +190,7 @@ function init() {
       ) //domain will be the first column
       .range([0, w])
       .paddingInner(paddingInner); //specify the mapped range, round it to minimize decimal places //add padding value
+      console.log("ditme");
     var yScale = d3
       .scaleLinear()
       .domain([
@@ -284,8 +206,6 @@ function init() {
       .data(dataset) //dataset used
       .enter() //data placeholder
       .append("rect") //draw the rectangle for each data
-      .transition() //transition
-      .duration(2000)
       .attr("x", function (d, i) {
         return xScale(d[0]) + margin.left;
       })
@@ -355,4 +275,4 @@ function init() {
   };
 }
 
-window.onload = init;
+window.addEventListener("load",init);
