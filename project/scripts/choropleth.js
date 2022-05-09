@@ -6,8 +6,8 @@
 //==========================================================================
 
 function init() {
-  var w = 700;
-  var h = 710;
+  var w = 500;
+  var h = 500;
 
   //--------VISUALIZATION 1: AUSTRALIAN CHOROPLETH-------
 
@@ -15,7 +15,7 @@ function init() {
     .geoMercator() //projection of the map
     .center([135, -26])
     .translate([w / 2, h / 2])
-    .scale(850); //expand the map
+    .scale(600); //expand the map
 
   var path = d3.geoPath().projection(projection); //map projection
 
@@ -120,6 +120,8 @@ function init() {
     });
   });
 
+
+
   //==========================================================================
   //---------------------------INTERACTIVITY FUNCTIONS------------------------
   //==========================================================================
@@ -147,8 +149,8 @@ function init() {
 
      // set the dimensions and margins of the graph
      var margin = { top: 50, right: 50, bottom: 70, left: 70 },
-     w = 800 - margin.left - margin.right,
-     h = 600 - margin.top - margin.bottom;
+     w = 600 - margin.left - margin.right,
+     h = 500 - margin.top - margin.bottom;
    var paddingInner = 0.05;
    //svg for interaction
    var svg1 = d3
@@ -190,7 +192,6 @@ function init() {
       ) //domain will be the first column
       .range([0, w])
       .paddingInner(paddingInner); //specify the mapped range, round it to minimize decimal places //add padding value
-      console.log("ditme");
     var yScale = d3
       .scaleLinear()
       .domain([
@@ -232,7 +233,7 @@ function init() {
       .enter()
       .append("text")
       .attr("x", function (d, i) {
-        return xScale(d[0]) + margin.left + 10;
+        return xScale(d[0]) + margin.left;
       })
       .attr("y", function (d) {
         return yScale(d[1]) - 2; //reverse the axis
