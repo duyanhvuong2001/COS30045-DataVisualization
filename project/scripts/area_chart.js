@@ -5,32 +5,52 @@ function init() {
     var margin = { top: 50, right: 50, bottom: 70, left: 70 },
     w = 1200 - margin.left - margin.right,
     h = 500 - margin.top - margin.bottom;
+    
+    
+   
 
-    // color of visualization
-    var color = {
+    //store buttons in an array
+    var stateButtons = document.getElementsByClassName("stateBtn");
+
+        for (var i = 0; i < stateButtons.length; i++) {
+
+        stateButtons[i].onclick = function() {
+            d3.selectAll("#area_graph > *").remove(); //clear the svg
+
+            var svg = d3.select("#area_graph")
+            .append("svg")
+                .attr("width", w + margin.left + margin.right)
+                .attr("height", h + margin.top + margin.bottom)
+            .append("g")
+                .attr("transform",
+                    "translate(" + margin.left + "," + margin.top + ")");
+    
+            var filepath = "data/" + this.textContent + "ElectricityGeneration08-21.csv"//concatenate strings based on buttons clicked
+            this.addEventListener("click",changeData(filepath,w,h,svg));
+
+        }
+    }
+}
+
+function changeData(filepath, w, h, svg) {
+    
+
+    var dataset;
+
+     // color of visualization
+     var color = {
         "black_coal": "#4d4d4d",//black
         "brown_coal": "#8c510a",//brown
         "natural_gas": "#f6e8c3",//light brown
         "oil_products": "#999999",//gray
         "other_a": "#f5f5f5",
         "bagasse_wood": "#c7eae5",
-        "biogas": "#80cdc1",
+        "biogas": "#90ee90",
         "wind": "#35978f",
         "hydro": "#4393c3",
-        "large_scale_solar_PV": "#35978f",
+        "large_scale_solar_PV": "#80cdc1",
         "small_scale_solar_PV": "#01665e"
     }
-    
-    
-    var svg = d3.select("#area_graph")
-                .append("svg")
-                    .attr("width", w + margin.left + margin.right)
-                    .attr("height", h + margin.top + margin.bottom)
-                .append("g")
-                    .attr("transform",
-                        "translate(" + margin.left + "," + margin.top + ")");
-
-    var dataset;
     
     var rowConverter = function(d) {//converter function
         return {
@@ -48,7 +68,7 @@ function init() {
             small_scale_solar_PV: d.small_scale_solar_PV
         }
     }
-    d3.csv("data/NTElectricityGeneration08-21.csv", rowConverter, function(error, data) {
+    d3.csv(filepath, rowConverter, function(error, data) {
         if(error) {
             throw error;//throw error if any;
         }

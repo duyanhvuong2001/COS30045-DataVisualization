@@ -147,18 +147,32 @@ function init() {
 
     d3.selectAll("#detailed_info > *").remove(); //clear the svg
 
+     // color of visualization
+     var barColor = {
+      "Black Coal": "#4d4d4d",//black
+      "Brown Coal": "#8c510a",//brown
+      "Natural Gas": "#f6e8c3",//light brown
+      "Oil Products": "#999999",//gray
+      "Other A": "#f5f5f5",
+      "Bagasse/Wood": "#c7eae5",
+      "Biogas": "#90ee90",
+      "Wind": "#35978f",
+      "Hydro": "#4393c3",
+      "Large Solar PV": "#80cdc1",
+      "Small Solar PV": "#01665e"
+    };
      // set the dimensions and margins of the graph
-     var margin = { top: 50, right: 50, bottom: 70, left: 70 },
-     w = 600 - margin.left - margin.right,
-     h = 500 - margin.top - margin.bottom;
-   var paddingInner = 0.05;
-   //svg for interaction
-   var svg1 = d3
-     .select("#detailed_info") //create the svg
-     .append("svg")
-     .attr("width", w + margin.left + margin.right)
-     .attr("height", h + margin.top + margin.bottom)
-     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    var margin = { top: 50, right: 50, bottom: 70, left: 70 },
+    w = 600 - margin.left - margin.right,
+    h = 500 - margin.top - margin.bottom;
+    var paddingInner = 0.05;
+    //svg for interaction
+    var svg1 = d3
+      .select("#detailed_info") //create the svg
+      .append("svg")
+      .attr("width", w + margin.left + margin.right)
+      .attr("height", h + margin.top + margin.bottom)
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
    
     var dataset = [
       ["Black Coal", d.properties.black_coal],
@@ -218,11 +232,7 @@ function init() {
         return h - yScale(d[1]);
       })
       .attr("fill", function (d, i) {
-        if (non_renewable.includes(d[0])) {
-          return "#bf812d";
-        } else {
-          return "#35978f";
-        }
+            return barColor[d[0]];
       });
 
 
