@@ -6,6 +6,7 @@
 //==========================================================================
 
 function init() {
+  var ANIMATION_DURATION = 500;
   var w = 500;
   var h = 500;
 
@@ -41,6 +42,18 @@ function init() {
       "#003c30",
     ]);
 
+     // set the dimensions and margins of the graph
+     var margin = { top: 50, right: 50, bottom: 70, left: 70 },
+     w = 600 - margin.left - margin.right,
+     h = 500 - margin.top - margin.bottom;
+     var paddingInner = 0.05;
+     //svg for interaction
+     var svg1 = d3
+       .select("#detailed_info") //create the svg
+       .append("svg")
+       .attr("width", w + margin.left + margin.right)
+       .attr("height", h + margin.top + margin.bottom)
+       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
   
 
 
@@ -117,6 +130,12 @@ function init() {
         .style("opacity", 0.8) //opacity
         .on("mouseover", mouseOverMap) //mouse over trigger
         .on("mouseleave", mouseLeaveMap); //mouse out trigger
+
+        
+        //prepare sample demonstration
+        prepareData(json.features[0]);
+
+        
     });
   });
 
@@ -128,6 +147,9 @@ function init() {
 
   //mouseOver function
   var mouseOverMap = function (d) {
+    if(d.properties.STATE_CODE == "ACT") {
+      return;
+    }
     //----------FIRST HIGHLIGHT THE STATE--------------------------------
     d3.selectAll(".state")
       .transition()
@@ -145,7 +167,6 @@ function init() {
 
     //---A CHART--------------------------------
 
-    d3.selectAll("#detailed_info > *").remove(); //clear the svg
 
      // color of visualization
      var barColor = {
@@ -161,25 +182,142 @@ function init() {
       "Large Solar PV": "#80cdc1",
       "Small Solar PV": "#01665e"
     };
-     // set the dimensions and margins of the graph
-    var margin = { top: 50, right: 50, bottom: 70, left: 70 },
-    w = 600 - margin.left - margin.right,
-    h = 500 - margin.top - margin.bottom;
-    var paddingInner = 0.05;
-    //svg for interaction
-    var svg1 = d3
-      .select("#detailed_info") //create the svg
-      .append("svg")
-      .attr("width", w + margin.left + margin.right)
-      .attr("height", h + margin.top + margin.bottom)
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
    
     var dataset = [
       ["Black Coal", d.properties.black_coal],
       ["Brown Coal", d.properties.brown_coal],
       ["Natural Gas", d.properties.natural_gas],
       ["Oil Products", d.properties.oil_products],
-      ["Bagasse/Wood ", d.properties.bagasse_wood],
+      ["Bagasse/Wood", d.properties.bagasse_wood],
+      ["Biogas", d.properties.biogas],
+      ["Wind", d.properties.wind],
+      ["Hydro", d.properties.hydro],
+      ["Large Solar PV", d.properties.large_scale_solar_PV],
+      ["Small Solar PV", d.properties.small_scale_solar_PV],
+    ];
+
+    //Arrays of categories for color assignments
+    var non_renewable = [
+      "Black Coal",
+      "Brown Coal",
+      "Natural Gas",
+      "Oil Products",
+    ];
+
+    document.getElementById("state_name").innerHTML = d.properties.STATE_NAME; //change title to state state_name
+
+    var xScale = d3
+      .scaleBand() //Ordinal scale
+      .domain(
+        dataset.map(function (d) {
+          return d[0];
+        })
+      ) //domain will be the first column
+      .range([0, w])
+      .paddingInner(paddingInner); //specify the mapped range, round it to minimize decimal places //add padding value
+
+    var yScale = d3
+      .scaleLinear()
+      .domain([
+        0, //min value = 0
+        d3.max(dataset, function (d) {
+          return parseFloat(d[1]) * 1.1;
+        }), //maximum value
+      ])
+      .range([h, 0]); //range of the domain
+
+    svg1
+      .selectAll("rect")
+      .data(dataset) //dataset used
+      .transition() //transition
+      .duration(ANIMATION_DURATION)
+      .attr("x", function (d, i) {
+        return xScale(d[0]) + margin.left;
+      })
+      .attr("y", function (d) {
+        return yScale(d[1]); //reverse the axis
+      })
+      .attr("width", xScale.bandwidth())
+      .attr("height", function (d) {
+        return h - yScale(d[1]);
+      })
+      .attr("fill", function (d, i) {
+            return barColor[d[0]];
+      });
+
+
+
+    svg1
+      .selectAll("text")
+      .data(dataset)
+      
+      .attr("x", function (d, i) {
+        return xScale(d[0]) + margin.left;
+      })
+      .transition() //transition
+      .duration(ANIMATION_DURATION)
+      .attr("y", function (d) {
+        return yScale(d[1]) - 2; //reverse the axis
+      })
+      .text(function (d) {
+        return d[1];
+      });
+
+    //add xAxis
+    var xAxis = d3.axisBottom().scale(xScale);
+
+    svg1.select("g.xAxis")
+      .call(xAxis)
+      .selectAll("text");
+
+    //add yAxis
+    var yAxis = d3.axisLeft().scale(yScale).ticks(5);
+
+    svg1.select("g.yAxis")
+      .transition()
+      .duration(ANIMATION_DURATION)
+      .call(yAxis)
+      .selectAll("text")
+      .attr("font-size", "15px");
+  };
+
+  //mouseOut function
+  var mouseLeaveMap = function (d) {
+    d3.selectAll(".state")
+      .transition()
+      .duration(200)
+      .style("stroke", "black") //stroke color
+      .style("stroke-width", 0.8)
+      .style("opacity", 0.8); //opacity
+  };
+
+  function prepareData(d) {
+
+    //--------SHOW ANOTHER DATA VISUALIZATION-------
+
+    //---A CHART--------------------------------
+     // color of visualization
+     var barColor = {
+      "Black Coal": "#4d4d4d",//black
+      "Brown Coal": "#8c510a",//brown
+      "Natural Gas": "#f6e8c3",//light brown
+      "Oil Products": "#999999",//gray
+      "Other A": "#f5f5f5",
+      "Bagasse/Wood": "#c7eae5",
+      "Biogas": "#90ee90",
+      "Wind": "#35978f",
+      "Hydro": "#4393c3",
+      "Large Solar PV": "#80cdc1",
+      "Small Solar PV": "#01665e"
+    };
+    
+   
+    var dataset = [
+      ["Black Coal", d.properties.black_coal],
+      ["Brown Coal", d.properties.brown_coal],
+      ["Natural Gas", d.properties.natural_gas],
+      ["Oil Products", d.properties.oil_products],
+      ["Bagasse/Wood", d.properties.bagasse_wood],
       ["Biogas", d.properties.biogas],
       ["Wind", d.properties.wind],
       ["Hydro", d.properties.hydro],
@@ -257,6 +395,7 @@ function init() {
 
     svg1
       .append("g")
+      .attr("class","xAxis")
       .attr("transform", "translate(" + margin.left + ", " + h + ")") //add some padding
       .call(xAxis)
       .selectAll("text")
@@ -270,20 +409,13 @@ function init() {
     svg1
       .append("g")
       .attr("transform", "translate(" + margin.left + ", 0)") //add some padding
+      .attr("class", "yAxis")
       .call(yAxis)
       .selectAll("text")
       .attr("font-size", "15px");
-  };
-
-  //mouseOut function
-  var mouseLeaveMap = function (d) {
-    d3.selectAll(".state")
-      .transition()
-      .duration(200)
-      .style("stroke", "black") //stroke color
-      .style("stroke-width", 0.8)
-      .style("opacity", 0.8); //opacity
-  };
 }
+}
+
+
 
 window.addEventListener("load",init);
