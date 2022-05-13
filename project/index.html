@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="description" content="Data Visualisation"/>
-        <meta name="keywords" content="HTML, CSS, D3"/>
-        <meta name="author" content="Duy Anh VUONG, Minh Vu NGUYEN"/>
-        <title>Energy Consumption and Generation in Australia</title>
-        <script src="https://d3js.org/d3.v4.min.js"></script>
-        <link rel="stylesheet" href="./styles/style.css">
-        <script src="scripts/choropleth.js"></script>
-        <script src="scripts/pie_chart.js"></script>
-        <script src="scripts/area_chart.js"></script>
-    </head>
-    <body>
-        <section id="pie_chart">
-            <div id="pie_1"></div>
-        </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Data Visualisation" />
+    <meta name="keywords" content="HTML, CSS, D3" />
+    <meta name="author" content="Duy Anh VUONG, Minh Vu NGUYEN" />
+    <title>Energy Consumption and Generation in Australia</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script src="scripts/choropleth.js"></script>
+    <script src="scripts/pie_chart.js"></script>
+    <script src="scripts/area_chart.js"></script>
+  </head>
+  <body>
+    <section id="pie_chart">
+      <div id="pie_1"></div>
+      <div id="pie_tooltip"></div>
+    </section>
 
-        <section id="choropleth">
-            <div id="australia_choropleth">
-                <h1>Australia's Dependency on Non-Renewable Fuels in Electricity Generation by states, 2021</h1>
-            </div>
-            <div id="choropleth_detailed_info">
-                <h2 id="state_name"></h2>
-                <p id="detailed_info"></p>
-            </div>
-        </section>
+    <section id="choropleth">
+      <div id="australia_choropleth">
+        <h1>
+          Australia's Dependency on Non-Renewable Fuels in Electricity
+          Generation by states, 2021
+        </h1>
+      </div>
+      <div id="choropleth_detailed_info">
+        <h2 id="state_name"></h2>
+        <p id="detailed_info"></p>
+      </div>
+    </section>
 
-        <section id="area_chart">
-            <h1>Australian States' Shift towards greener energy source</h1>
-            <p>
-                <button id="QLD" class="stateBtn">QLD</button>
-                <button id="VIC"class="stateBtn">VIC</button>
-                <button id="NSW"class="stateBtn">NSW</button>
-                <button id="NT"class="stateBtn">NT</button>
-                <button id="WA"class="stateBtn">WA</button>
-                <button id="TAS"class="stateBtn">TAS</button>
-                <button id="SA"class="stateBtn">SA</button>
-            </p>
-            <div id="area_graph">
+    <section id="area_chart">
+      <h1>Australian States' Shift towards greener energy source</h1>
+      <p>
+        <button id="QLD" class="stateBtn">QLD</button>
+        <button id="VIC" class="stateBtn">VIC</button>
+        <button id="NSW" class="stateBtn">NSW</button>
+        <button id="NT" class="stateBtn">NT</button>
+        <button id="WA" class="stateBtn">WA</button>
+        <button id="TAS" class="stateBtn">TAS</button>
+        <button id="SA" class="stateBtn">SA</button>
+      </p>
+      <div id="area_graph"></div>
+    </section>
 
-            </div>
-        </section>
-        
-       
-        
-        <footer>
-            <p>COS30045 Data Visualisation</p>
-            <p><b>Semester 1 2022</b></p>
-            <p><b>Duy Anh Vuong (Jeff)</b></p>
-            <p><b>Minh Vu Nguyen (Brian)</b></p>
-        </footer>
-    </body>
+    <footer>
+      <p>COS30045 Data Visualisation</p>
+      <p><b>Semester 1 2022</b></p>
+      <p><b>Duy Anh Vuong (Jeff)</b></p>
+      <p><b>Minh Vu Nguyen (Brian)</b></p>
+    </footer>
+  </body>
 </html>
