@@ -17,7 +17,7 @@ function init() {
                     ]);
 
     // Duration of animations
-    var ANIMATION_DURATION = 1000;
+    var ANIMATION_DURATION = 200;
     
     var labelDictionary = {//Dictionary for nicer label displays
         "coal": "Coal",
@@ -39,7 +39,13 @@ function init() {
                 .arc()
                 .innerRadius(radius*0.5)
                 .outerRadius(radius*0.8);
+    
+    // Circular arc for the pop-out functionality
+    var popoutArc = d3.arc()
+    .innerRadius(radius * 0.7)
+    .outerRadius(radius * 1.0);
 
+    // Outer arc for labeling
     var outerArc = d3.arc()
     .innerRadius(radius * 0.9)
     .outerRadius(radius * 0.9);
@@ -89,6 +95,21 @@ function init() {
                 return arc(d,i);
             });
         
+        //-----------------------MOUSEOVER EVENTS----------------------------//
+        arcs.on("mouseenter", function (d) {
+            d3.select(this)
+            .attr("stroke", "white")
+            .transition()
+            .duration(ANIMATION_DURATION)
+            .attr("d", popoutArc)
+            .attr("stroke-width", 1);
+        })
+        .on("mouseleave", function(d) {
+            d3.select(this).transition()
+            .duration(ANIMATION_DURATION)
+            .attr("d", arc)
+            .attr("stroke", "none");
+        })
 
         //-----------------------TEXT LABELS--------------------------------//
         // data written on graph
