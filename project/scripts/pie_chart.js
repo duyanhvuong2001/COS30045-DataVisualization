@@ -145,13 +145,14 @@ function init() {
     var tooltip = d3
       .select("#pie_tooltip")
       .append("div")
-      .style("opacity", 0)
       .attr("class", "tooltip")
       .style("background-color", "white")
       .style("border", "solid")
-      .style("border-width", "2px")
+      .style("position", "absolute")
+      .style("text-align", "center")
+      .style("border-width", "1px")
       .style("border-radius", "5px")
-      .style("padding", "5px");
+      .style("padding", "10px");
 
     tooltip.append("div").attr("class", "types");
 
@@ -179,8 +180,10 @@ function init() {
 
     arcs.on("mousemove", function (d) {
       tooltip
-        .style("top", d3.select(this).attr("cy") + "px")
-        .style("left", d3.select(this).attr("cx") + "px");
+        // .style("top", d3.select(this).attr("cy") + "px")
+        // .style("left", d3.select(this).attr("cx") + "px");
+        .style("left", d3.mouse(this)[0] + 300 + "px")
+        .style("top", d3.mouse(this)[1] + 300 + "px");
     });
   });
 }
