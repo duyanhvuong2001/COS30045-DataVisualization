@@ -13,40 +13,46 @@
     <script src="scripts/area_chart.js"></script>
   </head>
   <body>
-    <section id="pie_chart">
-      <h1>
-        Australia's Distribution of Energy, and Clean Energy Generation, 2021
-      </h1>
-      <div id="pie_1"></div>
-      <div id="pie_tooltip"></div>
-    </section>
-
-    <section id="choropleth">
-      <div id="australia_choropleth">
+    <!-- First scroll area - PIE CHART -->
+    <div class="scroll_container">
+      <section id="pie_chart">
         <h1>
-          Australia's Dependency on Non-Renewable Fuels in Electricity
-          Generation by states, 2021
+          Australia's Distribution of Energy, and Clean Energy Generation, 2021
         </h1>
-      </div>
-      <div id="choropleth_detailed_info">
-        <h2 id="state_name"></h2>
-        <p id="detailed_info"></p>
-      </div>
-    </section>
+        <div id="pie_1"></div>
+        <div id="pie_tooltip"></div>
+        <div id="pie_information"></div>
+      </section>
 
-    <section id="area_chart">
-      <h1>Australian States' Shift towards greener energy source</h1>
-      <p>
-        <button id="QLD" class="stateBtn">QLD</button>
-        <button id="VIC" class="stateBtn">VIC</button>
-        <button id="NSW" class="stateBtn">NSW</button>
-        <button id="NT" class="stateBtn">NT</button>
-        <button id="WA" class="stateBtn">WA</button>
-        <button id="TAS" class="stateBtn">TAS</button>
-        <button id="SA" class="stateBtn">SA</button>
-      </p>
-      <div id="area_graph"></div>
-    </section>
+      <!-- Second scroll area - CHOROPLETH -->
+      <section id="choropleth">
+        <div id="australia_choropleth">
+          <h1>
+            Australia's Dependency on Non-Renewable Fuels in Electricity
+            Generation by states, 2021
+          </h1>
+        </div>
+        <div id="choropleth_detailed_info">
+          <h2 id="state_name"></h2>
+          <p id="detailed_info"></p>
+        </div>
+      </section>
+
+      <!-- Third scroll area - AREA CHART -->
+      <section id="area_chart">
+        <h1>Australian States' Shift towards greener energy source</h1>
+        <p>
+          <button id="QLD" class="stateBtn">QLD</button>
+          <button id="VIC" class="stateBtn">VIC</button>
+          <button id="NSW" class="stateBtn">NSW</button>
+          <button id="NT" class="stateBtn">NT</button>
+          <button id="WA" class="stateBtn">WA</button>
+          <button id="TAS" class="stateBtn">TAS</button>
+          <button id="SA" class="stateBtn">SA</button>
+        </p>
+        <div id="area_graph"></div>
+      </section>
+    </div>
 
     <footer>
       <p>COS30045 Data Visualisation</p>
