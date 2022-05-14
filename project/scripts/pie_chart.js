@@ -161,7 +161,6 @@ function init() {
 
     arcs.on("mouseover", function (d) {
       tooltip.select(".types").html(labelDictionary[d.data.types]);
-      tooltip.select(".percentage").html(d.data.percentage + "%");
       tooltip.style("opacity", 1);
       // mouseover pie chart slices
       d3.select(this)
