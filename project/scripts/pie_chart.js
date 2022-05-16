@@ -169,20 +169,25 @@ function init() {
         .style("stroke-width", 10);
     });
 
+    arcs.on("mouseout", function (d) {
+      d3.select(this).style("border", "none");
+    });
+
     arcs.on("mouseleave", function (d) {
       tooltip.style("opacity", 0);
       d3.select(this)
         .style("stroke", "none")
         .style("opacity", 0.8)
-        .style("stroke-width", 0);
+        .style("stroke-width", 0)
+        .style("border", "none");
     });
 
     arcs.on("mousemove", function (d) {
       tooltip
         // .style("top", d3.select(this).attr("cy") + "px")
         // .style("left", d3.select(this).attr("cx") + "px");
-        .style("left", d3.mouse(this)[0] + 300 + "px")
-        .style("top", d3.mouse(this)[1] + 300 + "px");
+        .style("left", d3.mouse(this)[0] + 700 + "px")
+        .style("top", d3.mouse(this)[1] + 400 + "px");
     });
   });
 }

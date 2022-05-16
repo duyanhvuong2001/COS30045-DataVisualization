@@ -49,6 +49,11 @@ h2 {
   justify-content: center;
 }
 
+#choropleth {
+  display: flex;
+  flex-direction: column;
+}
+
 #choropleth_graph_area {
   display: flex;
   flex-direction: row;
