@@ -9,7 +9,20 @@ function init() {
   // color of visualization
   var color = d3
     .scaleOrdinal()
-    .range(["#8c510a", "#bf812d", "#dfc27d", "#f6e8c3"]);
+    .range([
+      "#8dd3c7",
+      "#ffffb3",
+      "#bebada",
+      "#fb8072",
+      "#80b1d3",
+      "#fdb462",
+      "#b3de69",
+      "#fccde5",
+      "#d9d9d9",
+      "#bc80bd",
+      "#ccebc5",
+      "#ffed6f",
+    ]);
 
   // Duration of animations
   var ANIMATION_DURATION = 200;

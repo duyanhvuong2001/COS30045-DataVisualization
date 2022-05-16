@@ -64,6 +64,16 @@ h2 {
   flex-direction: column;
 }
 
+#pie_2 {
+  display: flex;
+  flex-direction: column;
+}
+
+#pie_chart_area {
+  display: flex;
+  flex-direction: row;
+}
+
 button {
   background-color: darkcyan;
   border: none;
