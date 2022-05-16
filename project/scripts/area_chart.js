@@ -69,6 +69,7 @@ function prepareGraph(filepath, w, h, svg) {
             small_scale_solar_PV: d.small_scale_solar_PV
         }
     }
+
     d3.csv(filepath, rowConverter, function(error, data) {
         if(error) {
             throw error;//throw error if any;
@@ -136,6 +137,9 @@ function prepareGraph(filepath, w, h, svg) {
                 .attr("d",function(d){
                     return area(d);
                 })
+                .on("mouseover",mouseOverArea)
+                .on("mouseleave",mouseLeaveArea);
+
         //draw xAxis
         var xAxis = d3.axisBottom()
                         .scale(xScale)
@@ -153,6 +157,28 @@ function prepareGraph(filepath, w, h, svg) {
             .attr("class","yAxis")
             .call(yAxis);
     });
+}
+
+function mouseOverArea(d) {
+    d3.selectAll(".series")
+        .transition()
+        .duration(200)
+        .attr("opacity",0.5);
+    
+    d3.select(this)
+        .transition()
+        .duration(200)
+        .attr("opacity",1)
+        .attr("stroke","black")
+}
+
+function mouseLeaveArea(d) {
+    d3.selectAll(".series")
+    .transition()
+    .duration(200)
+    .style("stroke", "black") //stroke color
+    .style("stroke-width", 0.8)
+    .style("opacity", 0.8); //opacity
 }
 
 function changeData(filepath, w, h, svg, animation_duration) {
