@@ -5,9 +5,11 @@ html * {
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
+  width: 1000px;
+  height: 80vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 /* PAGE RELATED CSS*/
@@ -19,8 +21,8 @@ body {
 .scroll_area {
   display: flex;
   flex-direction: row;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 80vh;
   justify-content: space-evenly;
 }
 
@@ -46,6 +48,11 @@ h2 {
   justify-content: center;
 }
 
+.footer {
+  background-color: #ccccff;
+  margin-top: auto;
+}
+
 #choropleth {
   display: flex;
   flex-direction: column;
@@ -69,6 +76,12 @@ h2 {
 #pie_chart_area {
   display: flex;
   flex-direction: row;
+}
+
+#gen_information {
+  text-align: center;
+  background-color: black;
+  color: white;
 }
 
 button {
