@@ -160,25 +160,22 @@ function prepareGraph(filepath, w, h, svg) {
 }
 
 function mouseOverArea(d) {
-    d3.selectAll(".series")
+    d3.selectAll(".series > path")
         .transition()
         .duration(200)
-        .attr("opacity",0.5);
-    
+        .style("opacity",0.4);//fade others
+
     d3.select(this)
         .transition()
         .duration(200)
-        .attr("opacity",1)
-        .attr("stroke","black")
+        .style("opacity",1);
 }
 
 function mouseLeaveArea(d) {
-    d3.selectAll(".series")
-    .transition()
-    .duration(200)
-    .style("stroke", "black") //stroke color
-    .style("stroke-width", 0.8)
-    .style("opacity", 0.8); //opacity
+    d3.selectAll(".series > path")
+      .transition()
+      .duration(200)
+      .style("opacity", 1); //opacity
 }
 
 function changeData(filepath, w, h, svg, animation_duration) {
