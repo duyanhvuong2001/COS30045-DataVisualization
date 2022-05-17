@@ -161,7 +161,7 @@ function init() {
       .append("div")
       .attr("class", "tooltip")
       .style("background-color", "white")
-      .style("border", "solid")
+      .style("border", "none")
       .style("position", "absolute")
       .style("text-align", "center")
       .style("border-width", "1px")
@@ -176,15 +176,12 @@ function init() {
     arcs.on("mouseover", function (d) {
       tooltip.select(".types").html(labelDictionary[d.data.types]);
       tooltip.style("opacity", 1);
+      tooltip.style("border", "solid");
       // mouseover pie chart slices
       d3.select(this)
         .style("stroke", "rgb(0,0,0)")
         .style("opacity", 1)
-        .style("stroke-width", 10);
-    });
-
-    arcs.on("mouseout", function (d) {
-      d3.select(this).style("border", "none");
+        .style("stroke-width", 1);
     });
 
     arcs.on("mouseleave", function (d) {
@@ -200,8 +197,8 @@ function init() {
       tooltip
         // .style("top", d3.select(this).attr("cy") + "px")
         // .style("left", d3.select(this).attr("cx") + "px");
-        .style("left", d3.mouse(this)[0] + 1100 + "px")
-        .style("top", d3.mouse(this)[1] + 350 + "px");
+        .style("left", d3.mouse(this)[0] + 1300 + "px")
+        .style("top", d3.mouse(this)[1] + 1150 + "px");
     });
   });
 }
