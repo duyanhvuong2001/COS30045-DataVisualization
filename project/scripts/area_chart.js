@@ -36,6 +36,11 @@ function init() {
 function prepareGraph(filepath, w, h, svg) {
     
 
+     //-----------------------
+
+     
+
+
     var dataset;
 
      // color of visualization
@@ -129,6 +134,7 @@ function prepareGraph(filepath, w, h, svg) {
                         .enter()
                         .append("g")
                         .attr("class","series");
+     
         
         series.append("path")
                 .attr("fill",function(d,i) {
@@ -137,8 +143,15 @@ function prepareGraph(filepath, w, h, svg) {
                 .attr("d",function(d){
                     return area(d);
                 })
-                .on("mouseover",mouseOverArea)
-                .on("mouseleave",mouseLeaveArea);
+                .on("mouseover",function (d){
+                    mouseOverArea.call(this,d,tooltip);
+                })
+                .on("mouseleave",function(d) {
+                    mouseLeaveArea.call(this,d,tooltip);
+                })
+                .on("mousemove", function(d) {
+                    mouseMoveOnArea.call(this,d,tooltip);
+                });
 
         //draw xAxis
         var xAxis = d3.axisBottom()
@@ -157,9 +170,46 @@ function prepareGraph(filepath, w, h, svg) {
             .attr("class","yAxis")
             .call(yAxis);
     });
+
+        //-----------------------TOOLTIPS---------------------------------------------//
+        var tooltip = d3
+        .select("#area_tooltip")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("background-color", "white")
+        .style("border", "none")
+        .style("width", "150px")
+        .style("position", "relative")
+        .style("text-align", "center")
+        .style("border-width", "1px")
+        .style("border-radius", "5px")
+        .style("padding", "10px");
+   
+        tooltip.append("div").attr("class", "types");
 }
 
-function mouseOverArea(d) {
+
+
+
+
+function mouseOverArea(d,tooltip) {
+     // label dictionary for nicer displays
+     var labelDictionary = {
+        "black_coal": "Black Coal",
+        "brown_coal": "Brown Coal",
+        "natural_gas": "Natural Gas",
+        "oil_products": "Oil Products",
+        "other_a": "Other a",
+        "bagasse_wood": "Bagasse/Wood",
+        "biogas": "Biogas",
+        "wind": "Wind",
+        "hydro": "Hydro",
+        "large_scale_solar_PV": "Large Scale Solar PV",
+        "small_scale_solar_PV": "Small Scale Solar PV"
+    }
+
+    //--------
+
     d3.selectAll(".series > path")
         .transition()
         .duration(200)
@@ -169,14 +219,29 @@ function mouseOverArea(d) {
         .transition()
         .duration(200)
         .style("opacity",1);
+
+    tooltip.select(".types").html(labelDictionary[d.key]);
+    tooltip.style("opacity", 1);
+    tooltip.style("border", "solid");
 }
 
-function mouseLeaveArea(d) {
+function mouseLeaveArea(d,tooltip) {
     d3.selectAll(".series > path")
       .transition()
       .duration(200)
       .style("opacity", 1); //opacity
+    
+      tooltip.style("opacity", 0);
 }
+
+function mouseMoveOnArea(d,tooltip) {
+    tooltip
+        .style("left", d3.mouse(this)[0] + "px")
+        .style("top", d3.mouse(this)[1] - 400 + "px");
+}
+
+
+
 
 function changeData(filepath, w, h, svg, animation_duration) {
     
