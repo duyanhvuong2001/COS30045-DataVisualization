@@ -1,6 +1,6 @@
 function init() {
      //--------VISUALIZATION 3: AREA CHART------
-    var ANIMATION_DURATION = 1000;
+    var ANIMATION_DURATION = 150;
     // setting up and radius for visualization
     var margin = { top: 50, right: 50, bottom: 70, left: 70 },
     w = 1200 - margin.left - margin.right,

@@ -21,7 +21,7 @@ function init() {
   var path = d3.geoPath().projection(projection); //map projection
 
   var svg = d3
-    .select("#australia_choropleth") //set up the svg
+    .select("#graph") //set up the svg
     .append("svg")
     .attr("width", w)
     .attr("height", h)
