@@ -2,6 +2,7 @@
 
 html * {
   font-family: Arial !important;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -25,8 +26,8 @@ body {
   display: flex;
   flex-direction: row;
   /* width: 100vw; */
-  height: 100vh;
-  justify-content: space-evenly;
+  height: 80vh;
+  justify-content: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -50,12 +51,18 @@ h2 {
 
 .title {
   justify-content: center;
+  text-align: center;
+  background-color: rgb(72, 72, 72);
+  color: white;
+  width: 100vw;
+  margin-top: 0;
 }
 
 .footer {
-  background-color: #ccccff;
+  background-color: rgb(72, 72, 72);
   margin-top: auto;
   text-align: center;
+  color: white;
 }
 
 #gen_information {
@@ -70,7 +77,7 @@ h2 {
   text-align: center;
 }
 
-button {
+.stateBtn {
   background-color: darkcyan;
   border: none;
   color: white;
@@ -79,6 +86,33 @@ button {
   align-items: center;
   text-decoration: none;
   font-size: 10px;
+}
+
+.scrollBtn {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.scrollBtn:hover {
+  background-color: rgb(10, 105, 56);
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.scrollBtn:active {
+  transform: translateY(-1px);
 }
 
 /* =================================================================CHOROPLETH================================================================*/
@@ -90,12 +124,17 @@ button {
 #choropleth_graph_area {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 /* =================================================================PIE======================================================================*/
+#pie_chart {
+  text-align: center;
+}
+
 #pie {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 #pie_1 {
@@ -111,4 +150,13 @@ button {
 #pie_chart_area {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+}
+
+/* =================================================================PIE======================================================================*/
+
+#area_chart_area {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

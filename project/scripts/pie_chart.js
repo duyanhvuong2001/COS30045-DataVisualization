@@ -2,9 +2,9 @@ function init() {
   //--------VISUALIZATION 2: INTERACTIVE PIE CHART------
 
   // setting up and radius for visualization
-  w = 600;
-  h = 600;
-  margin = 90;
+  w = 400;
+  h = 400;
+  margin = 50;
   var radius = Math.min(w, h) / 2 - margin;
   // color of visualization
   var color = d3

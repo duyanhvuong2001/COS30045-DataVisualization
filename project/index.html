@@ -19,7 +19,7 @@
   <body>
     <div class="scroll_container">
       <!-- First scroll area - GENERAL INFORMATION -->
-      <div class="scroll_area">
+      <div class="scroll_area" id="scroll_area_1">
         <section id="gen_information">
           <h1>COS30045 - Data Visualization Project</h1>
           <br />
@@ -44,32 +44,58 @@
           <br />
           <br />
           <p>
-            We would love for you to spend some time to fill in this feedback
-            survey on our visualizations. Click
+            Feedback on this website and its visualizations are highly
+            encouraged. Click
             <a href="placeholder">here</a> to go to the survey.
           </p>
           <br />
           <br />
           <h1>Project By: Duy Anh Vuong (Jeff) and Minh Vu Nguyen (Brian)</h1>
+          <br />
+          <br />
+          <p>
+            <button
+              class="scrollBtn"
+              onClick="document.getElementById('scroll_area_2').scrollIntoView({behavior: 'smooth'});"
+            >
+              To Visualization 1
+            </button>
+            <button
+              class="scrollBtn"
+              onClick="document.getElementById('scroll_area_3').scrollIntoView({behavior: 'smooth'});"
+            >
+              To Visualization 2
+            </button>
+            <button
+              class="scrollBtn"
+              onClick="document.getElementById('scroll_area_4').scrollIntoView({behavior: 'smooth'});"
+            >
+              To Visualization 3
+            </button>
+          </p>
         </section>
       </div>
 
       <!-- Second scroll area - PIE CHART -->
-      <div class="scroll_area">
+      <div class="scroll_area" id="scroll_area_2">
         <section id="pie_chart">
-          <h1>
-            Australia's Distribution of Energy, and Clean Energy Generation,
-            2021
-          </h1>
+          <div class="title">
+            <h1>
+              Australia's Distribution of Energy, and Clean Energy Generation,
+              2021
+            </h1>
+          </div>
           <div id="pie_chart_area">
             <div id="pie">
+              <h2>Total Energy Distribution</h2>
               <div id="pie_1"></div>
-              <div id="pie_1_legend"></div>
             </div>
+            <div id="pie_1_legend"></div>
             <div id="pie">
+              <h2>Renewable Energy Distribution</h2>
               <div id="pie_2"></div>
-              <div id="pie_2_legend"></div>
             </div>
+            <div id="pie_2_legend"></div>
           </div>
           <div id="pie_tooltip"></div>
           <div id="pie_tooltip2"></div>
@@ -77,12 +103,15 @@
       </div>
 
       <!-- Third scroll area - CHOROPLETH -->
-      <div class="scroll_area">
+      <div class="scroll_area" id="scroll_area_3">
         <section id="choropleth">
-          <h1>
-            Australia's Dependency on Non-Renewable Fuels in Electricity
-            Generation by states, 2021
-          </h1>
+          <div class="title">
+            <h1>
+              Australia's Dependency on Non-Renewable Fuels in Electricity
+              Generation by states, 2021
+            </h1>
+          </div>
+
           <div id="choropleth_graph_area">
             <div id="australia_choropleth">
               <div id="choropleth_legend"></div>
@@ -97,7 +126,7 @@
       </div>
 
       <!-- Fourth scroll area - AREA CHART -->
-      <div class="scroll_area">
+      <div class="scroll_area" id="scroll_area_4">
         <section id="area_chart">
           <div class="title">
             <h1>Australian States' Shift towards greener energy source</h1>
@@ -113,8 +142,10 @@
               </p>
             </div>
           </div>
-          <div id="area_graph"></div>
-          <div id="area_tooltip"></div>
+          <div id="area_chart_area">
+            <div id="area_graph"></div>
+            <div id="area_tooltip"></div>
+          </div>
         </section>
       </div>
 

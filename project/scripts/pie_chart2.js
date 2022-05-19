@@ -2,9 +2,9 @@ function init() {
   //--------VISUALIZATION 2: 2ND INTERACTIVE PIE CHART------
 
   // setting up and radius for visualization
-  w = 600;
-  h = 600;
-  margin = 90;
+  w = 400;
+  h = 400;
+  margin = 50;
   var radius = Math.min(w, h) / 2 - margin;
   // color of visualization
   var color = d3
@@ -198,7 +198,7 @@ function init() {
       tooltip
         // .style("top", d3.select(this).attr("cy") + "px")
         // .style("left", d3.select(this).attr("cx") + "px");
-        .style("left", d3.mouse(this)[0] + 800 + "px")
+        .style("left", d3.mouse(this)[0] + 1100 + "px")
         .style("top", d3.mouse(this)[1] - 300 + "px");
     });
   });
