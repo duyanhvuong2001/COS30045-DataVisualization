@@ -11,7 +11,7 @@ function init() {
     .scaleOrdinal()
     .range([
       "#8dd3c7",
-      "#ffffb3",
+      "#bc80bd",
       "#bebada",
       "#fb8072",
       "#80b1d3",
