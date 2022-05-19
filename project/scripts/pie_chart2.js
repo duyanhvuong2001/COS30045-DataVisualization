@@ -162,9 +162,10 @@ function init() {
       .attr("class", "tooltip")
       .style("background-color", "white")
       .style("border", "none")
-      .style("position", "absolute")
+      .style("position", "relative")
       .style("text-align", "center")
       .style("border-width", "1px")
+      .style("width", "150px")
       .style("border-radius", "5px")
       .style("padding", "10px");
 
@@ -197,8 +198,8 @@ function init() {
       tooltip
         // .style("top", d3.select(this).attr("cy") + "px")
         // .style("left", d3.select(this).attr("cx") + "px");
-        .style("left", d3.mouse(this)[0] + 1300 + "px")
-        .style("top", d3.mouse(this)[1] + 1150 + "px");
+        .style("left", d3.mouse(this)[0] + 800 + "px")
+        .style("top", d3.mouse(this)[1] - 300 + "px");
     });
   });
 }

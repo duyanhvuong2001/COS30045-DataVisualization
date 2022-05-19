@@ -148,7 +148,8 @@ function init() {
       .attr("class", "tooltip")
       .style("background-color", "white")
       .style("border", "none")
-      .style("position", "absolute")
+      .style("width", "150px")
+      .style("position", "relative")
       .style("text-align", "center")
       .style("border-width", "1px")
       .style("border-radius", "5px")
@@ -170,7 +171,6 @@ function init() {
         .style("stroke-width", 1);
     });
 
-
     arcs.on("mouseleave", function (d) {
       tooltip.style("opacity", 0);
       d3.select(this)
@@ -184,8 +184,8 @@ function init() {
       tooltip
         // .style("top", d3.select(this).attr("cy") + "px")
         // .style("left", d3.select(this).attr("cx") + "px");
-        .style("left", d3.mouse(this)[0] + 770 + "px")
-        .style("top", d3.mouse(this)[1] + 1150 + "px");
+        .style("left", d3.mouse(this)[0] + 200 + "px")
+        .style("top", d3.mouse(this)[1] - 250 + "px");
     });
   });
 }
