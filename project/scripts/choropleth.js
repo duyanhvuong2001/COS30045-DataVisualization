@@ -55,8 +55,10 @@ function init() {
        .attr("height", h + margin.top + margin.bottom)
        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
   
-
-
+  
+  
+  
+  
   d3.csv("data/auElectricityGeneration2021.csv", function (data) {
     //map the color range based on loaded data
     color.domain([
