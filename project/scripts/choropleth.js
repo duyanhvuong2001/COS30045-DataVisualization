@@ -8,7 +8,7 @@
 function init() {
   var ANIMATION_DURATION = 500;
   var w = 500;
-  var h = 500;
+  var h = 400;
 
   //--------VISUALIZATION 1: AUSTRALIAN CHOROPLETH-------
 
@@ -16,7 +16,7 @@ function init() {
     .geoMercator() //projection of the map
     .center([135, -26])
     .translate([w / 2, h / 2])
-    .scale(600); //expand the map
+    .scale(500); //expand the map
 
   var path = d3.geoPath().projection(projection); //map projection
 
