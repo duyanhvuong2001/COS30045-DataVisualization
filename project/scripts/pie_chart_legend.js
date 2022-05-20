@@ -19,7 +19,7 @@ function init() {
   var color = d3
     .scaleOrdinal()
     .domain(keys)
-    .range(["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854"]);
+    .range(["#8c510a", "#bf812d", "#dfc27d", "#35978f", "#f6e8c3"]);
 
   var size = 20;
 
@@ -47,9 +47,7 @@ function init() {
     .attr("y", function (d, i) {
       return 100 + i * (size + 5) + size / 2;
     })
-    .style("fill", function (d) {
-      return color(d);
-    })
+    .style("fill", "black")
     .text(function (d) {
       return d;
     })

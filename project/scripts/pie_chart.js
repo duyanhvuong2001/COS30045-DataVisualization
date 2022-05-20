@@ -9,16 +9,7 @@ function init() {
   // color of visualization
   var color = d3
     .scaleOrdinal()
-    .range([
-      "#66c2a5",
-      "#fc8d62",
-      "#8da0cb",
-      "#e78ac3",
-      "#a6d854",
-      "#ffd92f",
-      "#e5c494",
-      "#b3b3b3",
-    ]);
+    .range(["#8c510a", "#bf812d", "#dfc27d", "#f6e8c3"]);
 
   // Duration of animations
   var ANIMATION_DURATION = 200;
@@ -98,7 +89,11 @@ function init() {
       .append("path")
       .attr("fill", function (d) {
         //color
-        return color(d.data.types);
+        if (d.data.types == "renewables") {
+          return "#35978f"; //green
+        } else {
+          return color(d.data.types);
+        }
       })
       .attr("stroke", "white")
       .attr("d", function (d, i) {

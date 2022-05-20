@@ -48,9 +48,7 @@ function init() {
     .attr("y", function (d, i) {
       return 100 + i * (size + 5) + size / 2;
     })
-    .style("fill", function (d) {
-      return color(d);
-    })
+    .style("fill", "black")
     .text(function (d) {
       return d;
     })
