@@ -161,14 +161,20 @@ function prepareGraph(filepath, w, h, svg) {
         svg.append("g")
             .attr("class","xAxis")
             .attr("transform", "translate(0, "+h+")")//move the axis to the bottom of the chart, added some padding
-            .call(xAxis);
+            .call(xAxis)
+            .selectAll("text")
+            .attr("font-size","15px");
             
         //draw yAxis
         var yAxis = d3.axisLeft()
                         .scale(yScale)
         svg.append("g")
             .attr("class","yAxis")
-            .call(yAxis);
+            .call(yAxis)
+            .selectAll("text")
+            .attr("font-size","15px");
+            
+            
     });
 
         //-----------------------TOOLTIPS---------------------------------------------//
@@ -236,8 +242,8 @@ function mouseLeaveArea(d,tooltip) {
 
 function mouseMoveOnArea(d,tooltip) {
     tooltip
-        .style("left", d3.mouse(this)[0] + "px")
-        .style("top", d3.mouse(this)[1] - 400 + "px");
+        .style("left", d3.mouse(this)[0] - 1100 + "px")
+        .style("top", d3.mouse(this)[1] + "px");
 }
 
 
@@ -367,7 +373,9 @@ function changeData(filepath, w, h, svg, animation_duration) {
         svg.select("g.yAxis")
             .transition()
             .duration(animation_duration)
-            .call(yAxis);
+            .call(yAxis)
+            .selectAll("text")
+            .attr("font-size","15px");;
     });
 }
 window.addEventListener("load",init);
