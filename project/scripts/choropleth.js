@@ -206,7 +206,7 @@ function init() {
       "Oil Products",
     ];
 
-    document.getElementById("state_name").innerHTML = d.properties.STATE_NAME; //change title to state state_name
+    document.getElementById("state_name").innerHTML = d.properties.STATE_NAME + "<br/> Electricity Generation by fuel types, in Gigawatt Hours (GWh)"; //change title to state state_name
 
     var xScale = d3
       .scaleBand() //Ordinal scale
@@ -244,11 +244,16 @@ function init() {
         return h - yScale(d[1]);
       })
       .attr("fill", function (d, i) {
-            return barColor[d[0]];
+            if(non_renewable.includes(d[0])) {
+              return "#bf812d"
+            }
+            else {
+              return "#35978f"
+            }
       });
 
 
-
+    //label
     svg1
       .selectAll("text")
       .data(dataset)
@@ -263,7 +268,8 @@ function init() {
       })
       .text(function (d) {
         return d[1];
-      });
+      })
+      .attr("size", "12px");
 
     //add xAxis
     var xAxis = d3.axisBottom().scale(xScale);
@@ -335,7 +341,7 @@ function init() {
       "Oil Products",
     ];
 
-    document.getElementById("state_name").innerHTML = d.properties.STATE_NAME; //change title to state state_name
+    document.getElementById("state_name").innerHTML = d.properties.STATE_NAME + "<br/> Electricity Generation by fuel types, in Gigawatt Hours (GWh)"; //change title to state state_name
 
     var xScale = d3
       .scaleBand() //Ordinal scale
@@ -372,11 +378,16 @@ function init() {
         return h - yScale(d[1]);
       })
       .attr("fill", function (d, i) {
-            return barColor[d[0]];
+        if(non_renewable.includes(d[0])) {
+          return "#bf812d"
+        }
+        else {
+          return "#35978f"
+        }
       });
 
 
-
+    //label
     svg1
       .selectAll("text")
       .data(dataset)
@@ -390,7 +401,8 @@ function init() {
       })
       .text(function (d) {
         return d[1];
-      });
+      })
+      .attr("font-size", "12px");
 
     //add xAxis
     var xAxis = d3.axisBottom().scale(xScale);
