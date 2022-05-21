@@ -15,6 +15,23 @@
     <script src="scripts/choropleth_legend.js"></script>
     <script src="scripts/pie_chart_legend.js"></script>
     <script src="scripts/pie_chart_legend2.js"></script>
+    <script>
+      function on(btn) {
+        if (btn == "btn1") {
+          document.getElementById("overlay1").style.display = "block";
+        } else if (btn == "btn2") {
+          document.getElementById("overlay2").style.display = "block";
+        } else if (btn == "btn3") {
+          document.getElementById("overlay3").style.display = "block";
+        } else {
+          return false;
+        }
+      }
+
+      function off() {
+        document.getElementById("overlay").style.display = "none";
+      }
+    </script>
   </head>
   <body>
     <div class="scroll_container">
@@ -78,9 +95,15 @@
 
       <!-- Second scroll area - PIE CHART -->
       <div class="scroll_area" id="scroll_area_2">
+        <div class="overlay" id="overlay1" onclick="off()">
+          <div id="overlay_text">
+            <p>Information 1</p>
+          </div>
+        </div>
         <section id="pie_chart">
           <div class="title">
             <h1>
+              <button onclick="on(btn1)">INFO</button>
               Australia's Distribution of Energy, and Clean Energy Generation,
               2021
             </h1>
@@ -89,11 +112,27 @@
             <div id="pie">
               <h2>Total Energy Distribution</h2>
               <div id="pie_1"></div>
+              <div id="caption">
+                <p>
+                  <em
+                    >Figure 1: Australia's Total Energy Generation Distribution,
+                    2021</em
+                  >
+                </p>
+              </div>
             </div>
             <div id="pie_1_legend"></div>
             <div id="pie">
               <h2>Renewable Energy Distribution</h2>
               <div id="pie_2"></div>
+              <div id="caption">
+                <p>
+                  <em
+                    >Figure 2: Australia's Renewable Energy Generation
+                    Distribution, 2021</em
+                  >
+                </p>
+              </div>
             </div>
             <div id="pie_2_legend"></div>
           </div>
@@ -104,9 +143,15 @@
 
       <!-- Third scroll area - CHOROPLETH -->
       <div class="scroll_area" id="scroll_area_3">
+        <div class="overlay" id="overlay2" onclick="off()">
+          <div id="overlay_text">
+            <p>Information 2</p>
+          </div>
+        </div>
         <section id="choropleth">
           <div class="title">
             <h1>
+              <button onclick="on(btn2)">INFO</button>
               Australia's Dependency on Non-Renewable Fuels in Electricity
               Generation by states, 2021
             </h1>
@@ -117,7 +162,12 @@
               <div id="choropleth_legend"></div>
               <div id="graph"></div>
               <div id="caption">
-                <p><em>Figure 3: Australia's Dependency on Non-Renewable Fuels in Electricity Generation by states, 2021</em></p>
+                <p>
+                  <em
+                    >Figure 3: Australia's Dependency on Non-Renewable Fuels in
+                    Electricity Generation by states, 2021</em
+                  >
+                </p>
               </div>
             </div>
             <div id="choropleth_detailed_info">
@@ -130,9 +180,17 @@
 
       <!-- Fourth scroll area - AREA CHART -->
       <div class="scroll_area" id="scroll_area_4">
+        <div class="overlay" id="overlay3" onclick="off()">
+          <div id="overlay_text">
+            <p>Information 3</p>
+          </div>
+        </div>
         <section id="area_chart">
           <div class="title">
-            <h1>Australian States' Shift towards greener energy source</h1>
+            <h1>
+              <button onclick="on(btn3)">INFO</button>Australian States' Shift
+              towards greener energy source
+            </h1>
             <div class="buttons">
               <p>
                 <button id="QLD" class="stateBtn">QLD</button>
@@ -148,6 +206,14 @@
           <div id="area_chart_area">
             <div id="area_graph"></div>
             <div id="area_tooltip"></div>
+          </div>
+          <div id="caption">
+            <p>
+              <em
+                >Figure 4: Australian States' Shift towards greener energy
+                source, 2010-2021</em
+              >
+            </p>
           </div>
         </section>
       </div>

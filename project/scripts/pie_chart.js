@@ -182,9 +182,7 @@ function init() {
 
     arcs.on("mousemove", function (d) {
       tooltip
-        // .style("top", d3.select(this).attr("cy") + "px")
-        // .style("left", d3.select(this).attr("cx") + "px");
-        .style("left", d3.mouse(this)[0] + 200 + "px")
+        .style("left", d3.mouse(this)[0] + 400 + "px")
         .style("top", d3.mouse(this)[1] - 250 + "px");
     });
   });
