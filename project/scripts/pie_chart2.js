@@ -179,19 +179,33 @@ function init() {
       tooltip.style("opacity", 1);
       tooltip.style("border", "solid");
       // mouseover pie chart slices
-      d3.select(this)
+      svg.selectAll("g.arc")
+        .transition()
+        .duration(ANIMATION_DURATION)
+        .style("stroke", "none")
+        .style("opacity", 0.4)
+        .style("stroke-width", 0)
+        .style("border", "none");
+      
+        d3.select(this)
+        .transition()
+        .duration(ANIMATION_DURATION)
         .style("stroke", "rgb(0,0,0)")
         .style("opacity", 1)
-        .style("stroke-width", 1);
+        .style("stroke-width", 1)
+        .style("stroke", "black");
     });
 
     arcs.on("mouseleave", function (d) {
       tooltip.style("opacity", 0);
-      d3.select(this)
-        .style("stroke", "none")
-        .style("opacity", 0.8)
-        .style("stroke-width", 0)
-        .style("border", "none");
+
+      svg.selectAll("g.arc")
+      .transition()
+      .duration(ANIMATION_DURATION)
+      .style("stroke", "none")
+      .style("opacity", 1)
+      .style("stroke-width", 0)
+      .style("border", "none");
     });
 
     arcs.on("mousemove", function (d) {

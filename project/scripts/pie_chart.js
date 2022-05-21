@@ -12,7 +12,7 @@ function init() {
     .range(["#8c510a", "#bf812d", "#dfc27d", "#f6e8c3"]);
 
   // Duration of animations
-  var ANIMATION_DURATION = 200;
+  var ANIMATION_DURATION = 100;
 
   var labelDictionary = {
     //Dictionary for nicer label displays
@@ -165,7 +165,19 @@ function init() {
       tooltip.style("opacity", 1);
       tooltip.style("border", "solid");
       // mouseover pie chart slices
-      d3.select(this)
+     
+      
+      svg.selectAll("g.arc")
+        .transition()
+        .duration(ANIMATION_DURATION)
+        .style("stroke", "none")
+        .style("opacity", 0.4)
+        .style("stroke-width", 0)
+        .style("border", "none");
+      
+        d3.select(this)
+        .transition()
+        .duration(ANIMATION_DURATION)
         .style("stroke", "rgb(0,0,0)")
         .style("opacity", 1)
         .style("stroke-width", 1)
@@ -174,9 +186,12 @@ function init() {
 
     arcs.on("mouseleave", function (d) {
       tooltip.style("opacity", 0);
-      d3.select(this)
+
+      svg.selectAll("g.arc")
+        .transition()
+        .duration(ANIMATION_DURATION)
         .style("stroke", "none")
-        .style("opacity", 0.8)
+        .style("opacity", 1)
         .style("stroke-width", 0)
         .style("border", "none");
     });
