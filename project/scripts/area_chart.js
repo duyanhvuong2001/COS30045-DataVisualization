@@ -226,7 +226,7 @@ function mouseOverArea(d,tooltip) {
         .duration(200)
         .style("opacity",1)
         .style("stroke","red")
-        .stryle("stroke-width","medium");
+        .style("stroke-width","medium");
 
     tooltip.select(".types").html(labelDictionary[d.key]);
     tooltip.style("opacity", 1);
