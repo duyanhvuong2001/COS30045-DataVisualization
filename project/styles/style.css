@@ -7,7 +7,7 @@ html * {
 
 body {
   width: 100vw;
-  min-width: 100vw;
+  min-width: 100%;
   height: 80vh;
   margin: 0;
   padding: 0;
@@ -26,7 +26,7 @@ body {
   display: flex;
   flex-direction: row;
   /* width: 100vw; */
-  height: 80vh;
+  height: 90vh;
   justify-content: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
@@ -56,10 +56,6 @@ section {
   -ms-transform: translate(-50%, -50%);
 }
 
-#buttons {
-  justify-content: center;
-}
-
 h1 {
   margin: 15px;
   text-align: center;
@@ -70,12 +66,13 @@ h2 {
 }
 
 .title {
-  justify-content: center;
   text-align: center;
   background-color: rgb(72, 72, 72);
   color: white;
   width: 100vw;
+  min-width: 100%;
   margin-top: 0;
+  top: 0;
 }
 
 .footer {
@@ -90,6 +87,7 @@ h2 {
   background-color: black;
   color: white;
   width: 100%;
+  min-height: 100%;
 }
 
 .buttons {
@@ -156,11 +154,17 @@ h2 {
 /* =================================================================PIE======================================================================*/
 #pie_chart {
   text-align: center;
+  align-items: center;
 }
 
-#pie {
+.pie {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+#pie1 {
+  padding-right: 200px;
 }
 
 #pie_1 {
@@ -176,7 +180,10 @@ h2 {
 #pie_chart_area {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+}
+
+#pie_1_legend {
+  padding-left: 200px;
 }
 
 /* =================================================================AREA======================================================================*/
@@ -188,6 +195,5 @@ h2 {
 }
 
 #area_chart {
-  justify-content: center;
   text-align: center;
 }

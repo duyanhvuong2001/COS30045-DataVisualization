@@ -1,5 +1,5 @@
 function init() {
-  w = 450;
+  w = 300;
   h = 300;
 
   var svg = d3
