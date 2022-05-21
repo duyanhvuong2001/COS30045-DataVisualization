@@ -17,11 +17,11 @@
     <script src="scripts/pie_chart_legend2.js"></script>
     <script>
       function on(btn) {
-        if (btn == "btn1") {
+        if (btn.id == "info1") {
           document.getElementById("overlay1").style.display = "block";
-        } else if (btn == "btn2") {
+        } else if (btn.id == "info2") {
           document.getElementById("overlay2").style.display = "block";
-        } else if (btn == "btn3") {
+        } else if (btn.id == "info3") {
           document.getElementById("overlay3").style.display = "block";
         } else {
           return false;
@@ -29,7 +29,10 @@
       }
 
       function off() {
-        document.getElementById("overlay").style.display = "none";
+        // document.getElementsByClassName("overlay").style.display = "none";
+        document.getElementById("overlay1").style.display = "none";
+        document.getElementById("overlay2").style.display = "none";
+        document.getElementById("overlay3").style.display = "none";
       }
     </script>
   </head>
@@ -103,7 +106,7 @@
         <section id="pie_chart">
           <div class="title">
             <h1>
-              <button onclick="on(btn1)">INFO</button>
+              <button id="info1" onclick="on(this)">INFO</button>
               Australia's Distribution of Energy, and Clean Energy Generation,
               2021
             </h1>
@@ -135,9 +138,8 @@
               </div>
             </div>
             <div id="pie_2_legend"></div>
+            <div id="pie_tooltip"></div>
           </div>
-          <div id="pie_tooltip"></div>
-          <div id="pie_tooltip2"></div>
         </section>
       </div>
 
@@ -151,7 +153,7 @@
         <section id="choropleth">
           <div class="title">
             <h1>
-              <button onclick="on(btn2)">INFO</button>
+              <button id="info2" onclick="on(this)">INFO</button>
               Australia's Dependency on Non-Renewable Fuels in Electricity
               Generation by states, 2021
             </h1>
@@ -188,8 +190,8 @@
         <section id="area_chart">
           <div class="title">
             <h1>
-              <button onclick="on(btn3)">INFO</button>Australian States' Shift
-              towards greener energy source
+              <button id="info3" onclick="on(this)">INFO</button>Australian
+              States' Shift towards greener energy source
             </h1>
             <div class="buttons">
               <p>

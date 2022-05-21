@@ -168,7 +168,8 @@ function init() {
       d3.select(this)
         .style("stroke", "rgb(0,0,0)")
         .style("opacity", 1)
-        .style("stroke-width", 1);
+        .style("stroke-width", 1)
+        .style("stroke", "black");
     });
 
     arcs.on("mouseleave", function (d) {
@@ -182,8 +183,8 @@ function init() {
 
     arcs.on("mousemove", function (d) {
       tooltip
-        .style("left", d3.mouse(this)[0] + 400 + "px")
-        .style("top", d3.mouse(this)[1] - 250 + "px");
+        .style("left", d3.mouse(this)[0] - 1600 + "px")
+        .style("top", d3.mouse(this)[1] + 200 + "px");
     });
   });
 }
