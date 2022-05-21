@@ -157,7 +157,7 @@ function init() {
 
     //-----------------------TOOLTIPS---------------------------------------------//
     var tooltip = d3
-      .select("#pie_tooltip")
+      .select("#pie_tooltip2")
       .append("div")
       .attr("class", "tooltip")
       .style("background-color", "white")
