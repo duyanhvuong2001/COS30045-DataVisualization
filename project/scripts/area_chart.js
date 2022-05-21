@@ -224,7 +224,9 @@ function mouseOverArea(d,tooltip) {
     d3.select(this)
         .transition()
         .duration(200)
-        .style("opacity",1);
+        .style("opacity",1)
+        .style("stroke","red")
+        .stryle("stroke-width","medium");
 
     tooltip.select(".types").html(labelDictionary[d.key]);
     tooltip.style("opacity", 1);
@@ -235,7 +237,8 @@ function mouseLeaveArea(d,tooltip) {
     d3.selectAll(".series > path")
       .transition()
       .duration(200)
-      .style("opacity", 1); //opacity
+      .style("opacity", 1)//opacity
+      .style("stroke","none"); 
     
       tooltip.style("opacity", 0);
 }
