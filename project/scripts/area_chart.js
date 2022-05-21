@@ -205,7 +205,7 @@ function mouseOverArea(d,tooltip) {
         "brown_coal": "Brown Coal",
         "natural_gas": "Natural Gas",
         "oil_products": "Oil Products",
-        "other_a": "Other a",
+        "other_a": "Other categories",
         "bagasse_wood": "Bagasse/Wood",
         "biogas": "Biogas",
         "wind": "Wind",
