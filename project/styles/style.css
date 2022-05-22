@@ -29,6 +29,7 @@ body {
   height: 90vh;
   justify-content: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 section {
@@ -37,12 +38,12 @@ section {
 }
 
 .overlay {
-  position: fixed;
+  position: absolute;
   display: none;
-  width: 400px;
-  height: 400px;
-  bottom: 400px;
-  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 1s ease-out;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 2;
   cursor: pointer;
 }
@@ -52,6 +53,7 @@ section {
   top: 50%;
   left: 50%;
   color: white;
+  text-align: center;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 }

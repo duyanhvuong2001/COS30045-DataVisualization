@@ -28,11 +28,16 @@
         }
       }
 
-      function off() {
-        // document.getElementsByClassName("overlay").style.display = "none";
-        document.getElementById("overlay1").style.display = "none";
-        document.getElementById("overlay2").style.display = "none";
-        document.getElementById("overlay3").style.display = "none";
+      function off(overlay) {
+        if (overlay.id == "overlay1") {
+          document.getElementById("overlay1").style.display = "none";
+        } else if (overlay.id == "overlay2") {
+          document.getElementById("overlay2").style.display = "none";
+        } else if (overlay.id == "overlay3") {
+          document.getElementById("overlay3").style.display = "none";
+        } else {
+          return false;
+        }
       }
     </script>
   </head>
@@ -76,19 +81,28 @@
           <p>
             <button
               class="scrollBtn"
-              onClick="document.getElementById('scroll_area_2').scrollIntoView({behavior: 'smooth'});"
+              id="info1"
+              onClick="document.getElementById('scroll_area_2').scrollIntoView({behavior: 'smooth'});
+              on(this);
+              "
             >
               To Visualization 1
             </button>
             <button
               class="scrollBtn"
-              onClick="document.getElementById('scroll_area_3').scrollIntoView({behavior: 'smooth'});"
+              id="info2"
+              onClick="document.getElementById('scroll_area_3').scrollIntoView({behavior: 'smooth'});
+              on(this);
+              "
             >
               To Visualization 2
             </button>
             <button
               class="scrollBtn"
-              onClick="document.getElementById('scroll_area_4').scrollIntoView({behavior: 'smooth'});"
+              id="info3"
+              onClick="document.getElementById('scroll_area_4').scrollIntoView({behavior: 'smooth'});
+              on(this);
+              "
             >
               To Visualization 3
             </button>
@@ -98,15 +112,45 @@
 
       <!-- Second scroll area - PIE CHART -->
       <div class="scroll_area" id="scroll_area_2">
-        <div class="overlay" id="overlay1" onclick="off()">
+        <div class="overlay" id="overlay1" onclick="off(this)">
           <div id="overlay_text">
-            <p>Information 1</p>
+            <h2>
+              Visualization 1: Australia's Distribution Energy, and Clean Energy
+              Generation, 2021
+            </h2>
+            <br />
+            <p>
+              The pie charts presented here visualizes Australia's Overall
+              Distribution of Energy by Type, along with the Clean Energy
+              Distribution in the year 2021. Each pie chart has a legend, which
+              shows the colors used in each pie chart corresponding to a type of
+              energy, and also has a tooltip function to easier see which type
+              of energy is being presented just from hovering the mouse over the
+              graph.
+            </p>
+            <br />
+            <p>
+              Notice that there are polylines indicating harder-to-see
+              statistics on the graph due to them being too small for
+              mouse-hover or for easy viewing. In addition, in Figure 1, the
+              color green is used to represent the "Renewable" part of the pie
+              chart, in order to highlight this compared to all other
+              non-renewable energy.
+            </p>
+            <br />
+            <h3>
+              <em
+                ><u>Click anywhere within this caption card to close it</u></em
+              >
+            </h3>
           </div>
         </div>
         <section id="pie_chart">
           <div class="title">
             <h1>
-              <button id="info1" onclick="on(this)">INFO</button>
+              <button class="scrollBtn" id="info1" onclick="on(this)">
+                About visualization
+              </button>
               Australia's Distribution of Energy, and Clean Energy Generation,
               2021
             </h1>
@@ -147,15 +191,45 @@
 
       <!-- Third scroll area - CHOROPLETH -->
       <div class="scroll_area" id="scroll_area_3">
-        <div class="overlay" id="overlay2" onclick="off()">
+        <div class="overlay" id="overlay2" onclick="off(this)">
           <div id="overlay_text">
-            <p>Information 2</p>
+            <h2>
+              Visualization 2: Australia's Dependency on Non-Renewable Fuels in
+              Electricity Generation by states, 2021
+            </h2>
+            <br />
+            <p>
+              This visualization is a combination of a choropleth map, with an
+              interactive bar chart to present how much Australia depends on
+              Non-Renewable Fuels for electricity generation in the year 2021.
+              The choropleth map is divided into states, which on mouse-hover,
+              changes the bar chart to show the amount of electricity generated
+              using specific types of fuels. A legend is used for the choropleth
+              to indicate how much of the total fuels used is non-renewable,
+              with more green indicating the state using more renewable fuels
+              for generation.
+            </p>
+            <br />
+            <p>
+              Notice that on mouse hover, the choropleth region is then
+              highlighted for easier viewing, with the addition of the color
+              choice in the bar chart, with yellow-brown for non-renewable
+              fuels, while green being renewable fuels.
+            </p>
+            <br />
+            <h3>
+              <em
+                ><u>Click anywhere within this caption card to close it</u></em
+              >
+            </h3>
           </div>
         </div>
         <section id="choropleth">
           <div class="title">
             <h1>
-              <button id="info2" onclick="on(this)">INFO</button>
+              <button class="scrollBtn" id="info2" onclick="on(this)">
+                About visualization
+              </button>
               Australia's Dependency on Non-Renewable Fuels in Electricity
               Generation by states, 2021
             </h1>
@@ -184,16 +258,44 @@
 
       <!-- Fourth scroll area - AREA CHART -->
       <div class="scroll_area" id="scroll_area_4">
-        <div class="overlay" id="overlay3" onclick="off()">
+        <div class="overlay" id="overlay3" onclick="off(this)">
           <div id="overlay_text">
-            <p>Information 3</p>
+            <h2>
+              Visualization 3: Australian States' Shift towards greener energy
+              source, 2010-2021
+            </h2>
+            <br />
+            <p>
+              This visualization is an area chart to present data on the trend
+              of Australian States' shift towards using greener energy sources
+              between the year 2010 to 2021. The graph has an array of buttons
+              that allow for cycling between states, and pressing them changes
+              the area chart below to match the data of the selected state.
+            </p>
+            <br />
+            <p>
+              Notice that on mouse hover, the specific type of energy source
+              area on the chart will be highlighted for easier viewing of the
+              proportional change of said data. In addition, keeping with the
+              choropleth's coloring scheme, the green color is also used to show
+              renewable energy sources, using different hues/saturations of
+              green to show different data types.
+            </p>
+            <br />
+            <h3>
+              <em
+                ><u>Click anywhere within this caption card to close it</u></em
+              >
+            </h3>
           </div>
         </div>
         <section id="area_chart">
           <div class="title">
             <h1>
-              <button id="info3" onclick="on(this)">INFO</button>Australian
-              States' Shift towards greener energy source
+              <button class="scrollBtn" id="info3" onclick="on(this)">
+                About visualization
+              </button>
+              Australian States' Shift towards greener energy source, 2010-2021
             </h1>
             <div class="buttons">
               <p>
